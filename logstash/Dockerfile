@@ -3,8 +3,8 @@
 FROM debian:jessie
 MAINTAINER mmerrick
 
-EXPOSE 9995 #Netflow V5
-EXPOSE 9999 #Netflow V9
+EXPOSE 9995
+EXPOSE 9999
 
 RUN wget -qO - https://packages.elastic.co/GPG-KEY-elasticsearch | apt-key add -
 RUN echo "deb http://packages.elastic.co/logstash/2.3/debian stable main" | sudo tee -a /etc/apt/sources.list
