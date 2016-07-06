@@ -1,0 +1,1 @@
+docker exec -t softflowd /bin/sh -c "softflowctl statistics"
