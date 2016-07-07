@@ -1,8 +1,5 @@
 #!/bin/bash
 
-
-
-
 name=logstash
 pidfile="/var/run/$name.pid"
 
@@ -37,11 +34,10 @@ if [ "$(ls -A $CONF_DIR)" ]; then
     done
 
     wait 
-    suspend
+    echo "logstash is running"
   
 else 
-    printf ("no config files found, try:\n")
-    printf ("docker run -d -P --name=logstash -v /path/to/configs/:/etc/logstash/conf.d/ mmerrick/logstash")
+    echo -e "no config files found, try"
+    echo -e "docker run -d -P --name=logstash -v /path/to/configs/:/etc/logstash/conf.d/ mmerrick/logstash"
 fi
-
-
+sleep 500000
