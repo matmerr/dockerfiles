@@ -1,4 +1,4 @@
-FROM debian:jessie 
+FROM postgres:latest
 MAINTAINER mmerrick
 
 ENV EL_JEFE_VERSION 2.2
@@ -6,19 +6,13 @@ ENV EL_JEFE_VERSION 2.2
 
 # install el-jefe dependencies and supervisor
 RUN apt-get update && apt-get install -y wget \
-    curl \
-    build-essential \
-    python-pip \
-    python-dev \
     sudo \
     postgresql \
     postgresql-9.4 \ 
     postgresql-client-9.4 \
     postgresql-client-common \
     postgresql-common \
-    supervisor \
-
-RUN cd /usr/local/var/postgres && rm postmaster.pid
+    supervisor 
 
 # create supervisor directories
 RUN mkdir /var/log/supervisord
