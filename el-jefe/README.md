@@ -1,4 +1,4 @@
-# [Elasticsearcg][el-jefe-site]
+# [El Jefe][el-jefe-site]
 Continerized El-Jefe for WMI
 
 Port 800 web interface
