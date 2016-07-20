@@ -4,13 +4,11 @@ MAINTAINER mmerrick
 ENV EL_JEFE_VERSION 2.2
 
 RUN apt-get update && apt-get -y install \
-    wget \
-    sudo \
-    supervisor 
     python-psycopg2 \
     build-essential \
     python-dev \
-    python-pip postgresql \
+    python-pip \
+    postgresql \
     mongodb \
     python-sqlalchemy \
     python-bson \
