@@ -3,7 +3,8 @@ Continerized El-Jefe for WMI
 
 Port 800 web interface
 
-##Known Issues
-XML server fails
+```
+docker run --net=host mmerrick/el-jefe
+```
 
 [el-jefe-site]: <https://eljefe.immunityinc.com/>
