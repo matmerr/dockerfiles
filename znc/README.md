@@ -1,4 +1,4 @@
-Originally forked from [jimeh/znc](http://github.com/jimeh/znc)
+Originally forked from [jimeh/znc](https://github.com/jimeh/znc)
 
 
 # ZNC for Docker
