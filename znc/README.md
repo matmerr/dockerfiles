@@ -1,6 +1,3 @@
-Originally forked from [jimeh/znc](https://github.com/jimeh/znc)
-
-
 # ZNC for Docker
 
 Run the [ZNC][] IRC Bouncer in a Docker container.
