@@ -6,9 +6,6 @@ RUN apt-get install -y sudo \
     qemu-system-arm
 RUN usermod -aG sudo user
 RUN echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-#USER user
 WORKDIR /home/user/workspace
 COPY .vscode ../.vscode
 COPY setup.sh /init/shell_colors.sh
-
-#ENTRYPOINT sh -c .vscode/terminal/.setup.sh
