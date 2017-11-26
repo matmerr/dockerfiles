@@ -13,14 +13,15 @@ $extpath=".vscode/extensions"
 $cmd = @" 
 export DISPLAY=${ip}:0; \
 sudo chown -R user ../.[^.]* && \
+sudo chmod +x ../shell_colors.sh &&
 ../shell_colors.sh && \
 /usr/share/code/code -w ${workdir} --extensionHomePath ${extpath}
 "@
     
-docker run --privileged --rm `
+docker run -d --privileged --rm `
     --security-opt seccomp=unconfined `
     -v ${PWD}:$workdir `
     --name=code `
     --hostname=code `
-    arm/vscode-arm-qemu `
+    matmerr/vscode-arm-qemu `
     su - user -p -c $cmd
