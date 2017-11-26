@@ -10,12 +10,17 @@ $ip=Get-NetIPAddress `
 # start Visual Studo Code as regular user
 $workdir="/home/user/workspace"
 $extpath=".vscode/extensions"
-$cmd="export DISPLAY=${ip}:0; /init/shell_colors.sh && /usr/share/code/code -w ${workdir} --extensionHomePath ${extpath}"
-
+$cmd = @" 
+export DISPLAY=${ip}:0; \
+sudo chown -R user ../.[^.]* && \
+../shell_colors.sh && \
+/usr/share/code/code -w ${workdir} --extensionHomePath ${extpath}
+"@
+    
 docker run --privileged --rm `
     --security-opt seccomp=unconfined `
     -v ${PWD}:$workdir `
     --name=code `
     --hostname=code `
-    matmerr/vscode-arm-qemu `
+    arm/vscode-arm-qemu `
     su - user -p -c $cmd
