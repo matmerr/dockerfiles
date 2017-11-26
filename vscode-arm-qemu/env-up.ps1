@@ -22,5 +22,5 @@ docker run --privileged --rm `
     -v ${PWD}:$workdir `
     --name=code `
     --hostname=code `
-    arm/vscode-arm-qemu `
+    matmerr/vscode-arm-qemu `
     su - user -p -c $cmd
