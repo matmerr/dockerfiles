@@ -9,3 +9,4 @@ RUN echo "user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 WORKDIR /home/user/workspace
 COPY .vscode ../.vscode
 COPY setup.sh /init/shell_colors.sh
+RUN chown user /init/shell_colors.sh
