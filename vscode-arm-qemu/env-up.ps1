@@ -19,6 +19,7 @@ sudo chmod +x ../shell_colors.sh &&
 "@
     
 docker run -d --privileged --rm `
+    --init `
     --security-opt seccomp=unconfined `
     -v ${PWD}:$workdir `
     --name=code `
