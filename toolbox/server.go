@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"math/rand"
 	"net"
+	"net/http"
 	"os"
 	"strconv"
 	"strings"
@@ -11,10 +12,12 @@ import (
 )
 
 const (
-	TCP     = "tcp"
-	TCPPort = 8085
-	UDP     = "udp"
-	UDPPort = 8086
+	HTTP     = "http"
+	HTTPPort = 8080
+	TCP      = "tcp"
+	TCPPort  = 8085
+	UDP      = "udp"
+	UDPPort  = 8086
 )
 
 func main() {
@@ -30,8 +33,30 @@ func main() {
 		fmt.Printf("UDP_PORT not set, defaulting to port %d\n", UDPPort)
 	}
 
+	httpPort, err := strconv.Atoi(os.Getenv("HTTP_PORT"))
+	if err != nil {
+		httpPort = HTTPPort
+		fmt.Printf("HTTP_PORT not set, defaulting to port %d\n", HTTPPort)
+	}
+
 	go ListenOnUDP(udpPort)
-	ListenOnTCP(tcpPort)
+	go ListenOnTCP(tcpPort)
+	ListenHttp(httpPort)
+}
+
+func writeHttpResponse(w http.ResponseWriter, r *http.Request) {
+	fmt.Printf("[HTTP] Received Connection from %v\n", r.RemoteAddr)
+	w.Write(getResponse(r.RemoteAddr, "http"))
+}
+
+func ListenHttp(port int) {
+	http.HandleFunc("/", writeHttpResponse)
+	p := strconv.Itoa(port)
+	fmt.Printf("[HTTP] Listening on %+v\n", p)
+
+	if err := http.ListenAndServe(":"+p, nil); err != nil {
+		panic(err)
+	}
 }
 
 func ListenOnTCP(port int) {
