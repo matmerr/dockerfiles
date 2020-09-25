@@ -17,6 +17,7 @@ RUN apt-get install -y \
     iputils-ping \
     net-tools \
     dnsutils \
+    bridge-utils \
     netcat \
     ncat \
     ssh \
