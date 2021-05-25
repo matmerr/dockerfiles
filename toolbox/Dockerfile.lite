@@ -1,0 +1,8 @@
+FROM golang as build
+ADD ./server.go /
+WORKDIR /
+RUN CGO_ENABLED=0 GOOS=linux go build -o webserver .
+
+FROM scratch
+COPY --from=build /webserver .
+CMD ["./webserver"]
